@@ -2,7 +2,7 @@ class Hyperparams:
     word_embed_size = 256
     cnn_layers = 10
     # channel
-    filter_size = 1
+    filter_size = 64
     filter_h = 5
     filter_w = 5
     block_size = 5

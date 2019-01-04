@@ -9,6 +9,7 @@ def embed(x, vocab_size, num_units, trainable=True):
                                    shape=[vocab_size, num_units],
                                    trainable=trainable,
                                    initializer=tf.random_uniform_initializer(-1.0, 1.0))
+    lookup_table = tf.concat((tf.zeros(shape=[1, num_units]), lookup_table[1:, :]), 0)
     embeds = tf.nn.embedding_lookup(lookup_table, x)
     batch_size = tf.shape(tf.reduce_sum(tf.to_int32(tf.not_equal(x, hp.vocab_size + 1)), 1))[0]
     embeds = tf.reshape(embeds, (batch_size, hp.max_len, hp.word_embed_size, 1))
